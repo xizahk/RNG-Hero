@@ -5,6 +5,8 @@
 #include <string>
 #include "Game.h"
 #include "Player.h"
+#include <math.h>
+
 
 using namespace std;
 
@@ -17,21 +19,21 @@ int main()
         Game game = Game(player);
         int target_round;
         int difficulty;
+        double temp;
         
         cout << "Please select a difficulty from 1 (easiest) to 20 (hardest): ";
-        cin >> difficulty;
+        cin >> temp;
+        difficulty = floor(temp);
         
-        while (difficulty < 1 || difficulty > 20)
+        while (!cin || abs(temp - (double)difficulty) > 0.01 || difficulty < 1 || difficulty > 20)
         {
-            cout << "Please select a difficulty from 1 to 20: ";
-            cin >> difficulty;
-        }
-        
-        while (!cin)
-        {
+            cin.clear();
+            cin.ignore(10000, '\n');
             cout << "Please enter an integer from 1 to 20: ";
-            cin >> difficulty;
+            cin >> temp;
+            difficulty = floor(temp);
         }
+        
         target_round = difficulty * 25;
         game.start(target_round);
         
@@ -45,3 +47,4 @@ int main()
     
     cout << "Thank you for playing!" << endl;
 }
+
