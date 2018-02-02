@@ -203,7 +203,7 @@ void Game::processShop()
         cout << endl;
     }
     
-    this->player.changeStat(numATK,HP);
+    this->player.changeStat(numATK,ATK);
     this->player.changeStat(-10 * numATK,GOLD);
 }
 
