@@ -6,6 +6,9 @@ Player
 A player has combat stats: HP and Atk and non-combat stat: gold. 
 Player starts with 100 HP, 10 Atk, and 0 Gold by default.
 
+Enemy  
+Enemy extends the Player class and has the same type of stats: HP, Atk, and gold. 
+
 Game  
 A game handles the completion of rounds and processing of events. It is initialized with a Player and target round as parameter. 
   - Game starts with the function call start()
