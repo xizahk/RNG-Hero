@@ -3,6 +3,7 @@
 #include "Game.h"
 #include <cstdlib>
 #include <iostream>
+#include "Enemy.h"
 
 using namespace std;
 
@@ -11,15 +12,9 @@ using namespace std;
 //    2) The player's hp reaches 0 (Game over).
 void Game::start(int target_round)
 {
-    cout << "Your target round is: " << target_round <<" Good luck!" << endl;
     while (this->round != target_round)
     {
-        cout << "The current round is: " << this->round
-            << "\nYour stats: " << this->player << endl;
         this->processRound();
-        if (this->player.getHp() <= 0) {
-            break;
-        }
     }
 
     if (this->round == target_round) {
@@ -55,6 +50,39 @@ void Game::processRound()
 // Processes a fight encounter.
 void Game::processFight()
 {
+    Enemy temp = Enemy();
+    temp.setup(get_round());
+    cout << temp;
+    while (temp.getHp() != 0)
+    {
+        string option;
+        cout << "Choose an option: Fight or Flee" << endl;
+        cin >> option;
+        if (option == "Fight")
+        {
+            this->player.changeStat(-temp.getatk(), HP);
+            temp.changeStat(-this->player.getatk(), HP);
+        }
+        else if (option == "Flee")
+        {
+            int fled = rand();
+            double probability = min(1,this->player.getatk());
+            if (fled >= probability)
+            {
+                cout << "You have fled!" << endl;
+                break;
+            }
+            else
+            {
+                this->player.changeStat(-temp.getatk(), HP);
+            }
+        }
+        cout << temp;
+        if (this->player.getHp()<=0)
+        {
+            return;
+        }
+    }
 
 }
 
@@ -72,7 +100,7 @@ void Game::processEvent()
 	cout << "Do you want to test your luck? Enter yes to roll a dice or no to end the round." << endl;
 	cin >> choice;
 	if (choice == "yes" || choice == "Yes") {
-		r = ((double) rand() / (RAND_MAX));
+		r = ((double) rand() / (RAND_MAX)) + 1;
 		if (r > 0.5) {
 			this->player.changeStat(1,HP);
 			this->player.changeStat(1,ATK);
@@ -87,4 +115,7 @@ int Game::get_round()
 {
     return round;
 }
+//
+// Created by Firec on 2/2/2018.
+//
 
