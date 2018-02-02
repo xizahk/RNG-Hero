@@ -18,16 +18,16 @@ class Game
     Player player;
     int round;
 
-    public:
-        Game(Player player) : player(player), round(0) {};
-        void start(int target_round);
-        int get_round();
+public:
+    Game(Player player) : player(player), round(0) {};
+    void start(int target_round);
+    int get_round();
 
-    private:
-        void processRound();
-        void processFight();
-        void processShop();
-        void processEvent();
+private:
+    void processRound();
+    void processFight();
+    void processShop();
+    void processEvent();
 };
 
 #endif // GAME_H

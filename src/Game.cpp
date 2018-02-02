@@ -16,8 +16,6 @@ void Game::start(int target_round)
     cout << "Your target round is: " << target_round <<". Good luck!" << endl;
     while (this->round != target_round)
     {
-        cout << "The current round is: " << this->round
-            << "\nYour stats: " << this->player << endl;
         this->processRound();
         if (this->player.getHp() <= 0)
         {
@@ -43,8 +41,7 @@ void Game::processRound()
     mt19937 mt(rd());
     uniform_real_distribution<double> dist(0,3);
     //int single_round = rand()%3;
-    this->round++;
-    cout << floor(dist(mt)) << endl;
+    round++;
     if (floor(dist(mt))== FIGHT)
     {
         processFight();
@@ -160,7 +157,7 @@ void Game::processShop()
         cout << endl;
     }
 
-    this->player.changeStat(numATK,HP);
+    this->player.changeStat(numATK,ATK);
     this->player.changeStat(-10 * numATK,GOLD);
 }
 
@@ -168,30 +165,30 @@ void Game::processShop()
 // Processes a event encounter
 void Game::processEvent()
 {
-	string choice;
-	double r;
-	cout << "Do you want to test your luck? Enter yes to roll a dice or no to end the round." << endl;
+    string choice;
+    double r;
+    cout << "Do you want to test your luck? Enter yes to roll a dice or no to end the round." << endl;
     cout << endl;
-	cin >> choice;
+    cin >> choice;
     cout << endl;
     random_device rd;
     mt19937 mt(rd());
     uniform_real_distribution<double> dist(0,1);
-	if (choice == "yes" || choice == "Yes") {
-		r = dist(mt);
-		if (r > 0.5) {
-			this->player.changeStat(1,HP);
-			this->player.changeStat(1,ATK);
+    if (choice == "yes" || choice == "Yes") {
+        r = dist(mt);
+        if (r > 0.5) {
+            this->player.changeStat(1,HP);
+            this->player.changeStat(1,ATK);
             cout << "Player Stats: " << this->player << endl;
             cout << endl;
-		}
-		else {
-			this->player.changeStat(-1,HP);
-			this->player.changeStat(-1,ATK);
+        }
+        else {
+            this->player.changeStat(-1,HP);
+            this->player.changeStat(-1,ATK);
             cout << "Player Stats: " << this->player << endl;
             cout << endl;
-		}
-	}
+        }
+    }
 }
 
 // Returns the current number of rounds in the game.

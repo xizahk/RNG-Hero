@@ -22,14 +22,14 @@ class Player
     // Non-combat stat
     int gold;
 
-    public:
-        Player() : hp(100), atk(10), gold(0) {};
-        Player(int hp, int atk, int gold) : hp(hp), atk(atk), gold(gold) {};
-        virtual void changeStat(int amount, Stat stat);
-        int getGold() { return gold;};
-        int getHp() { return hp; };
-        int getAtk() { return atk; };
-        friend std::ostream &operator<<(std::ostream &os, Player &p);
+public:
+    Player() : hp(100), atk(10), gold(0) {};
+    Player(int hp, int atk, int gold) : hp(hp), atk(atk), gold(gold) {};
+    virtual void changeStat(int amount, Stat stat);
+    int getGold() { return gold;};
+    int getHp() { return hp; };
+    int getAtk() { return atk; };
+    friend std::ostream &operator<<(std::ostream &os, Player &p);
 };
 
 #endif // PLAYER_H
