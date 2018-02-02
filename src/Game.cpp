@@ -136,7 +136,9 @@ void Game::processShop()
     numHP = floor(temp);
     cout << endl;
     
-    while (numHP < 0 || abs(temp - (double)numHP) > 0.01) {
+    while (!cin || numHP < 0 || abs(temp - (double)numHP) > 0.01) {
+        cin.clear();
+        cin.ignore(10000, '\n');
         cout << "Invalid input! How many HP +1's would you like to purchase? Currently, you can buy up to " << maxHP << endl;
         cout << endl;
         cin >> temp;
@@ -164,7 +166,9 @@ void Game::processShop()
     numATK = floor(temp);
     cout << endl;
     
-    while (numATK < 0 || abs(temp - (double)numATK) > 0.01) {
+    while (!cin || numATK < 0 || abs(temp - (double)numATK) > 0.01) {
+        cin.clear();
+        cin.ignore(10000, '\n');
         cout << "Invalid input! How many ATK +1's would you like to purchase? Currently, you can buy up to " << maxATK << endl;
         cout << endl;
         cin >> temp;
