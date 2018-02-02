@@ -1,12 +1,15 @@
 // "Game.cpp"
 
-#include "Game.h"
+#include "Game.hpp"
 #include <cstdlib>
 #include <iostream>
 #include <random>
 #include <math.h>
 #include <stdlib.h>
 #include <time.h>
+#include <sstream>
+#include <string>
+#include <algorithm>
 using namespace std;
 // Starts the game and creates a game loop. The loop continues until either
 //    1) The player reaches his or her target round. OR
@@ -22,7 +25,7 @@ void Game::start(int target_round)
             break;
         }
     }
-
+    
     if (this->round == target_round) {
         cout << "Congratulations! ";
     } else {
@@ -59,7 +62,7 @@ void Game::processRound()
 // Processes a fight encounter.
 void Game::processFight()
 {
-
+    
     Player temp = Player(get_round()*2, round/4, round*5);
     cout << "Player Stats: " << this->player << endl;
     cout << endl;
@@ -72,14 +75,14 @@ void Game::processFight()
         cout << endl;
         cin >> option;
         cout << endl;
-        if (option == "Fight")
+        if (option == "Fight" || option == "fight")
         {
             this->player.changeStat(-temp.getAtk(), HP);
             temp.changeStat(-this->player.getAtk(), HP);
             cout << "Player Stats: " << this->player << endl;
             cout << endl;
         }
-        else if (option == "Flee")
+        else if (option == "Flee" || option == "flee")
         {
             random_device rd;
             mt19937 mt(rd());
@@ -117,48 +120,70 @@ void Game::processFight()
         cout << "Enemy Stats: " << temp << endl;
         cout << endl;
     }
-
+    
 }
 
 // Processes a shop encounter
 void Game::processShop()
 {
     int numHP, numATK, maxHP, maxATK, money;
+    double temp;
     money = this->player.getGold();
     maxHP = floor(money/10);
-
+    
     cout << "Welcome to the shop! Here are the upgrades offered:\nHP +1 -- 10 gold\nATK +1 -- 10 gold" << endl;
     cout << endl;
     cout << "How many HP +1's would you like to purchase? Currently, you can buy up to " << maxHP << endl;
     cout << endl;
-    cin >> numHP;
+    cin >> temp;
+    numHP = floor(temp);
     cout << endl;
+    
+    while (numHP < 0 || abs(temp - (double)numHP) > 0.01) {
+        cout << "Invalid input! How many HP +1's would you like to purchase? Currently, you can buy up to " << maxHP << endl;
+        cout << endl;
+        cin >> temp;
+        numHP = floor(temp);
+        cout << endl;
+    }
+    
     while (numHP > maxHP) {
         cout << "Insufficient gold! How many HP +1's would you like to purchase? Currently, you can buy up to " << maxHP << endl;
         cout << endl;
-        cin >> numHP;
+        cin >> temp;
+        numHP = floor(temp);
         cout << endl;
     }
-
+    
     this->player.changeStat(numHP,HP);
     this->player.changeStat(-10 * numHP,GOLD);
-
+    
     money = this->player.getGold();
     maxATK = floor(money/10);
-
+    
     cout << "How many ATK +1's would you like to purchase? Currently, you can buy up to " << maxATK << endl;
     cout << endl;
-    cin >> numATK;
+    cin >> temp;
+    numATK = floor(temp);
     cout << endl;
-
+    
+    while (numATK < 0 || abs(temp - (double)numATK) > 0.01) {
+        cout << "Invalid input! How many ATK +1's would you like to purchase? Currently, you can buy up to " << maxATK << endl;
+        cout << endl;
+        cin >> temp;
+        numATK = floor(temp);
+        cout << endl;
+    }
+    
     while (numATK > maxATK) {
         cout << "Insufficient gold! How many ATK +1's would you like to purchase? Currently, you can buy up to " << maxATK << endl;
         cout << endl;
-        cin >> numATK;
+        cin >> temp;
+        numATK = floor(temp);
         cout << endl;
     }
-
-    this->player.changeStat(numATK,ATK);
+    
+    this->player.changeStat(numATK,HP);
     this->player.changeStat(-10 * numATK,GOLD);
 }
 
@@ -180,15 +205,22 @@ void Game::processEvent()
         if (r > 0.5) {
             this->player.changeStat(1,HP);
             this->player.changeStat(1,ATK);
+            cout << "Congratulations! Your stats have increased. " << endl;
             cout << "Player Stats: " << this->player << endl;
             cout << endl;
         }
         else {
             this->player.changeStat(-1,HP);
             this->player.changeStat(-1,ATK);
+            cout << "Oh no! Your stats have decreased. " << endl;
             cout << "Player Stats: " << this->player << endl;
             cout << endl;
         }
+    }
+    else {
+        cout << "Your stats have not changed. " << endl;
+        cout << "Player Stats: " << this->player << endl;
+        cout << endl;
     }
 }
 
