@@ -16,6 +16,8 @@ void Game::start(int target_round)
     cout << "Your target round is: " << target_round <<". Good luck!" << endl;
     while (this->round != target_round)
     {
+        cout << "The current round is: " << this->round
+            << "\nYour stats: " << this->player << endl;
         this->processRound();
         if (this->player.getHp() <= 0)
         {
