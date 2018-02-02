@@ -1,6 +1,7 @@
 // "Game.cpp"
 
-#include <Game.h>
+#include "Game.h"
+#include <cstdlib>
 #include <iostream>
 
 using namespace std;
@@ -35,7 +36,20 @@ void Game::start(int target_round)
 //    processes the encounter.
 void Game::processRound()
 {
-
+    int single_round = rand()%3;
+    round++;
+    if (single_round == FIGHT)
+    {
+        processFight();
+    }
+    else if (single_round == SHOP)
+    {
+        processShop();
+    }
+    else if (single_round == EVENT)
+    {
+        processEvent();
+    }
 }
 
 // Processes a fight encounter.
@@ -53,5 +67,27 @@ void Game::processShop()
 // Processes a event encounter
 void Game::processEvent()
 {
-
+	string choice;
+	double r;
+	cout << "Do you want to test your luck? Enter yes to roll a dice or no to end the round." << endl;
+	cin >> choice;
+	if (choice == "yes" || choice == "Yes") {
+		r = ((double) rand() / (RAND_MAX)) + 1;
+		if (r > 0.5) {
+			this->player.changeStat(1,HP);
+			this->player.changeStat(1,ATK);
+		}
+		else {
+			this->player.changeStat(-1,HP);
+			this->player.changeStat(-1,ATK);
+		}
+	}
 }
+int Game::get_round()
+{
+    return round;
+}
+//
+// Created by Firec on 2/2/2018.
+//
+

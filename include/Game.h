@@ -5,15 +5,23 @@
 
 #ifndef GAME_H
 #define GAME_H
-#include <Player.h>
+#include "Player.h"
+#include <cstdlib>
+enum Events
+{
+    FIGHT = 0, SHOP = 1, EVENT = 2
 
+};
 class Game
 {
     Player player;
     int round;
+    
     public:
-        Game(Player player) : player(player), round(0) {};
+        Game(Player player) : player(player) {};
+        void start();
         void start(int target_round);
+        int get_round();
 
     private:
         void processRound();
