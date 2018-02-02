@@ -3,6 +3,7 @@
 #include "Game.h"
 #include <cstdlib>
 #include <iostream>
+#include "Enemy.h"
 
 using namespace std;
 
@@ -11,15 +12,13 @@ using namespace std;
 //    2) The player's hp reaches 0 (Game over).
 void Game::start(int target_round)
 {
+<<<<<<< HEAD
     cout << "Your target round is: " << target_round <<". Good luck!" << endl;
+=======
+>>>>>>> 99b9080382d0f6ce39151c9211c46bbc3973f207
     while (this->round != target_round)
     {
-        cout << "The current round is: " << this->round
-            << "\nYour stats: " << this->player << endl;
         this->processRound();
-        if (this->player.getHp() <= 0) {
-            break;
-        }
     }
 
     if (this->round == target_round) {
@@ -55,14 +54,75 @@ void Game::processRound()
 // Processes a fight encounter.
 void Game::processFight()
 {
+    Enemy temp = Enemy();
+    temp.setup(get_round());
+    cout << temp;
+    while (temp.getHp() != 0)
+    {
+        string option;
+        cout << "Choose an option: Fight or Flee" << endl;
+        cin >> option;
+        if (option == "Fight")
+        {
+            this->player.changeStat(-temp.getAtk(), HP);
+            temp.changeStat(-this->player.getAtk(), HP);
+        }
+        else if (option == "Flee")
+        {
+            int fled = rand();
+            double probability = min(1,this->player.getAtk());
+            if (fled >= probability)
+            {
+                cout << "You have fled!" << endl;
+                break;
+            }
+            else
+            {
+                this->player.changeStat(-temp.getAtk(), HP);
+            }
+        }
+        cout << temp;
+        if (this->player.getHp()<=0)
+        {
+            return;
+        }
+    }
 
 }
 
 // Processes a shop encounter
 void Game::processShop()
 {
-
+    int numHP, numATK, maxHP, maxATK, money;
+    money = this->player.getGold();
+    maxHP = floor(money/10);
+    
+    cout << "Welcome to the shop! Here are the upgrades offered:\nHP +1 -- 10 gold\nATK +1 -- 10 gold" << endl;
+    cout << "How many HP +1's would you like to purchase? Currently, you can buy up to " << maxHP << endl;
+    cin >> numHP;
+    while (numHP > maxHP) {
+        cout << "Insufficient gold! How many HP +1's would you like to purchase? Currently, you can buy up to " << maxHP << endl;
+        cin >> numHP;
+    }
+    
+    this->player.changeStat(numHP,HP);
+    this->player.changeStat(10 * numHP,GOLD);
+    
+    money = this->player.getGold();
+    maxATK = floor(money/10);
+    
+    cout << "How many ATK +1's would you like to purchase? Currently, you can buy up to " << maxATK << endl;
+    cin >> numATK;
+    
+    while (numATK > maxATK) {
+        cout << "Insufficient gold! How many ATK +1's would you like to purchase? Currently, you can buy up to " << maxATK << endl;
+        cin >> numATK;
+    }
+    
+    this->player.changeStat(numATK,HP);
+    this->player.changeStat(10 * numATK,GOLD);
 }
+
 
 // Processes a event encounter
 void Game::processEvent()
@@ -72,7 +132,7 @@ void Game::processEvent()
 	cout << "Do you want to test your luck? Enter yes to roll a dice or no to end the round." << endl;
 	cin >> choice;
 	if (choice == "yes" || choice == "Yes") {
-		r = ((double) rand() / (RAND_MAX));
+		r = ((double) rand() / (RAND_MAX)) + 1;
 		if (r > 0.5) {
 			this->player.changeStat(1,HP);
 			this->player.changeStat(1,ATK);
@@ -86,4 +146,8 @@ void Game::processEvent()
 int Game::get_round()
 {
     return round;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 99b9080382d0f6ce39151c9211c46bbc3973f207
