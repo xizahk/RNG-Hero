@@ -92,6 +92,7 @@ void Game::processFight()
                 cout << endl;
                 cout << "Player Stats: " << this->player << endl;
                 cout << endl;
+                round--;
                 break;
             }
             else
