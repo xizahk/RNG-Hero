@@ -17,3 +17,12 @@ void Player::changeStat(int amount, Stat stat)
 			break;
 	}
 }
+
+// This renders a representation of the Player to the screen,
+// formatted like:
+// (HP:<hp>) (Attack:<atk>) (Gold:<gold>)
+std::ostream &operator<<(std::ostream &os, Player &p)
+{
+    os << "(HP: " << p.hp << ") (Attack: " << p.atk << ") (Gold:" << p.gold << ")";
+    return os;
+}

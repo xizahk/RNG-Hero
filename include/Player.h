@@ -5,6 +5,7 @@
 
 #ifndef PLAYER_H
 #define PLAYER_H
+#include <iostream>
 
 enum Stat
 {
@@ -27,7 +28,8 @@ class Player
         void changeStat(int amount, Stat stat);
         int getGold() { return gold;};
         int getHp() { return hp; };
-        int getatk() { return atk; };
+        int getAtk() { return atk; };
+        friend std::ostream &operator<<(std::ostream &os, Player &p);
 };
 
 #endif // PLAYER_H

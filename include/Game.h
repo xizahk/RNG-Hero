@@ -12,7 +12,7 @@ class Game
     Player player;
     int round;
     public:
-        Game(Player player) : player(player) {};
+        Game(Player player) : player(player), round(0) {};
         void start(int target_round);
 
     private:
