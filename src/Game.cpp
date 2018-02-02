@@ -7,13 +7,13 @@
 #include <math.h>
 #include <stdlib.h>
 #include <time.h>
-
 using namespace std;
 // Starts the game and creates a game loop. The loop continues until either
 //    1) The player reaches his or her target round. OR
 //    2) The player's hp reaches 0 (Game over).
 void Game::start(int target_round)
 {
+    cout << "Your target round is: " << target_round <<". Good luck!" << endl;
     while (this->round != target_round)
     {
         this->processRound();
@@ -125,7 +125,7 @@ void Game::processShop()
     int numHP, numATK, maxHP, maxATK, money;
     money = this->player.getGold();
     maxHP = floor(money/10);
-    
+
     cout << "Welcome to the shop! Here are the upgrades offered:\nHP +1 -- 10 gold\nATK +1 -- 10 gold" << endl;
     cout << endl;
     cout << "How many HP +1's would you like to purchase? Currently, you can buy up to " << maxHP << endl;
@@ -138,25 +138,25 @@ void Game::processShop()
         cin >> numHP;
         cout << endl;
     }
-    
+
     this->player.changeStat(numHP,HP);
     this->player.changeStat(-10 * numHP,GOLD);
-    
+
     money = this->player.getGold();
     maxATK = floor(money/10);
-    
+
     cout << "How many ATK +1's would you like to purchase? Currently, you can buy up to " << maxATK << endl;
     cout << endl;
     cin >> numATK;
     cout << endl;
-    
+
     while (numATK > maxATK) {
         cout << "Insufficient gold! How many ATK +1's would you like to purchase? Currently, you can buy up to " << maxATK << endl;
         cout << endl;
         cin >> numATK;
         cout << endl;
     }
-    
+
     this->player.changeStat(numATK,HP);
     this->player.changeStat(-10 * numATK,GOLD);
 }
@@ -190,6 +190,8 @@ void Game::processEvent()
 		}
 	}
 }
+
+// Returns the current number of rounds in the game.
 int Game::get_round()
 {
     return round;
