@@ -1,7 +1,8 @@
 // "Game.cpp"
 
 #include "Game.h"
-
+using namespace std;
+#include <cstdlib>
 // Starts the game creates a game loop until either
 //    1) The player reaches his or her target round. OR
 //    2) The player's hp reaches 0 (Game over).
@@ -15,7 +16,20 @@ void Game::start()
 //    processes the encounter.
 void Game::processRound()
 {
-
+    int single_round = rand()%3;
+    round++;
+    if (single_round == FIGHT)
+    {
+        processFight();
+    }
+    else if (single_round == SHOP)
+    {
+        processShop();
+    }
+    else if (single_round == EVENT)
+    {
+        processEvent();
+    }
 }
 
 // Processes a fight encounter.
@@ -35,3 +49,11 @@ void Game::processEvent()
 {
 
 }
+int Game::get_round()
+{
+    return round;
+}
+//
+// Created by Firec on 2/2/2018.
+//
+
