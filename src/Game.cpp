@@ -2,15 +2,26 @@
 
 #include "Game.h"
 
-// Starts the game creates a game loop until either
+// Starts the game and creates a game loop. The loop continues until either
 //    1) The player reaches his or her target round. OR
 //    2) The player's hp reaches 0 (Game over).
-void Game::start()
+void Game::start(int target_round)
 {
-    // Start the game
+    while (this->round != target_round)
+    {
+        this->processRound();
+    }
+
+    if (this->round == target_round) {
+        cout << "Congratulations! ";
+    } else {
+        cout << "Gameover. ";
+    }
+    cout << "You have reached round: " << this->round << endl;
+    return;
 }
 
-// Processes the a single round in the game and increments round count by 1
+// Processes a single round in the game and increments round count by 1
 //    Determines whether the player faces a Fight, Shop, or Event encounter and
 //    processes the encounter.
 void Game::processRound()

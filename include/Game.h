@@ -11,10 +11,9 @@ class Game
 {
     Player player;
     int round;
-    int target_round;
     public:
-        Game(Player player, int target) : player(player), target_round(target_round) {};
-        void start();
+        Game(Player player) : player(player) {};
+        void start(int target_round);
 
     private:
         void processRound();
