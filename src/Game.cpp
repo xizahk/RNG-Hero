@@ -12,10 +12,7 @@ using namespace std;
 //    2) The player's hp reaches 0 (Game over).
 void Game::start(int target_round)
 {
-<<<<<<< HEAD
     cout << "Your target round is: " << target_round <<". Good luck!" << endl;
-=======
->>>>>>> 99b9080382d0f6ce39151c9211c46bbc3973f207
     while (this->round != target_round)
     {
         this->processRound();
@@ -143,11 +140,9 @@ void Game::processEvent()
 		}
 	}
 }
+
+// Returns the current number of rounds in the game.
 int Game::get_round()
 {
     return round;
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 99b9080382d0f6ce39151c9211c46bbc3973f207
