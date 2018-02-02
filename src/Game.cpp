@@ -60,13 +60,13 @@ void Game::processFight()
         cin >> option;
         if (option == "Fight")
         {
-            this->player.changeStat(-temp.getatk(), HP);
-            temp.changeStat(-this->player.getatk(), HP);
+            this->player.changeStat(-temp.getAtk(), HP);
+            temp.changeStat(-this->player.getAtk(), HP);
         }
         else if (option == "Flee")
         {
             int fled = rand();
-            double probability = min(1,this->player.getatk());
+            double probability = min(1,this->player.getAtk());
             if (fled >= probability)
             {
                 cout << "You have fled!" << endl;
@@ -74,7 +74,7 @@ void Game::processFight()
             }
             else
             {
-                this->player.changeStat(-temp.getatk(), HP);
+                this->player.changeStat(-temp.getAtk(), HP);
             }
         }
         cout << temp;
@@ -115,7 +115,3 @@ int Game::get_round()
 {
     return round;
 }
-//
-// Created by Firec on 2/2/2018.
-//
-
