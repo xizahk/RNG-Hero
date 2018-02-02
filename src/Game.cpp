@@ -43,7 +43,8 @@ void Game::processRound()
     mt19937 mt(rd());
     uniform_real_distribution<double> dist(0,3);
     //int single_round = rand()%3;
-    round++;
+    this->round++;
+    cout << floor(dist(mt)) << endl;
     if (floor(dist(mt))== FIGHT)
     {
         processFight();
