@@ -8,6 +8,7 @@
 int main()
 {
     Player player = Player();
-    Game game = Game(player);
+    int target_round = 20;
+    Game game = Game(player, target_round);
     game.start();
 }
