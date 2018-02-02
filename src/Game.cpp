@@ -151,7 +151,7 @@ void Game::processShop()
     numHP = floor(temp);
     cout << endl;
     
-    while (!cin || numHP < 0 || abs(temp - (double)numHP) > 0.01) 
+    while (!cin || numHP < 0 || abs(temp - (double)numHP) > 0.000000001) 
     {
         cin.clear();
         cin.ignore(10000, '\n');
@@ -183,7 +183,7 @@ void Game::processShop()
     numATK = floor(temp);
     cout << endl;
     
-    while (!cin || numATK < 0 || abs(temp - (double)numATK) > 0.01) 
+    while (!cin || numATK < 0 || abs(temp - (double)numATK) > 0.000000001) 
     {
         cin.clear();
         cin.ignore(10000, '\n');
