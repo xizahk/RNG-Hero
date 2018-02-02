@@ -16,10 +16,9 @@ class Game
 {
     Player player;
     int round;
-    
+
     public:
-        Game(Player player) : player(player) {};
-        void start();
+        Game(Player player) : player(player), round(0) {};
         void start(int target_round);
         int get_round();
 

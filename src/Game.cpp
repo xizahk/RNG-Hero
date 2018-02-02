@@ -72,7 +72,7 @@ void Game::processEvent()
 	cout << "Do you want to test your luck? Enter yes to roll a dice or no to end the round." << endl;
 	cin >> choice;
 	if (choice == "yes" || choice == "Yes") {
-		r = ((double) rand() / (RAND_MAX)) + 1;
+		r = ((double) rand() / (RAND_MAX));
 		if (r > 0.5) {
 			this->player.changeStat(1,HP);
 			this->player.changeStat(1,ATK);
@@ -87,7 +87,4 @@ int Game::get_round()
 {
     return round;
 }
-//
-// Created by Firec on 2/2/2018.
-//
 

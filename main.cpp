@@ -5,10 +5,17 @@
 #include <Game.h>
 #include <Player.h>
 
+using namespace std;
+
 int main()
 {
-    Player player = Player();
-    int target_round = 20;
-    Game game = Game(player);
-    game.start(target_round);
+    cout << "Welcome to RNG Hero!" << endl;
+    bool play_game = true;
+    while (play_game == true) {
+        Player player = Player();
+        Game game = Game(player);
+        int target_round = 200;
+        game.start(target_round);
+        break;
+    }
 }
