@@ -3,6 +3,8 @@
 #include <Game.h>
 #include <iostream>
 
+using namespace std;
+
 // Starts the game and creates a game loop. The loop continues until either
 //    1) The player reaches his or her target round. OR
 //    2) The player's hp reaches 0 (Game over).
