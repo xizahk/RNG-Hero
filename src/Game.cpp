@@ -1,17 +1,31 @@
 // "Game.cpp"
 
 #include "Game.h"
-using namespace std;
 #include <cstdlib>
-// Starts the game creates a game loop until either
+#include <iostream>
+
+using namespace std;
+
+// Starts the game and creates a game loop. The loop continues until either
 //    1) The player reaches his or her target round. OR
 //    2) The player's hp reaches 0 (Game over).
-void Game::start()
+void Game::start(int target_round)
 {
-    // Start the game
+    while (this->round != target_round)
+    {
+        this->processRound();
+    }
+
+    if (this->round == target_round) {
+        cout << "Congratulations! ";
+    } else {
+        cout << "Gameover. ";
+    }
+    cout << "You have reached round: " << this->round << endl;
+    return;
 }
 
-// Processes the a single round in the game and increments round count by 1
+// Processes a single round in the game and increments round count by 1
 //    Determines whether the player faces a Fight, Shop, or Event encounter and
 //    processes the encounter.
 void Game::processRound()
@@ -47,7 +61,21 @@ void Game::processShop()
 // Processes a event encounter
 void Game::processEvent()
 {
-
+	string choice;
+	double r;
+	cout << "Do you want to test your luck? Enter yes to roll a dice or no to end the round." << endl;
+	cin >> choice;
+	if (choice == "yes" || choice == "Yes") {
+		r = ((double) rand() / (RAND_MAX)) + 1;
+		if (r > 0.5) {
+			this->player.changeStat(1,HP);
+			this->player.changeStat(1,ATK);
+		}
+		else {
+			this->player.changeStat(-1,HP);
+			this->player.changeStat(-1,ATK);
+		}
+	}
 }
 int Game::get_round()
 {

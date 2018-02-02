@@ -20,6 +20,7 @@ class Game
 public:
     Game(Player player) : player(player) {};
     void start();
+    void start(int target_round);
     int get_round();
 
 private:
