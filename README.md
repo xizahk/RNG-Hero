@@ -1,21 +1,21 @@
-Game Title: RNG Hero
+Game Title: RNG Hero 
 Goal: Reach x round
 
-Classes:
+Classes: 
 Player
 A player has combat stats: HP and Atk and non-combat stat: gold. 
 Player starts with 100 HP, 10 Atk, and 0 Gold by default.
 
-Game
+Game 
 A game handles the completion of rounds and processing of events. It is initialized with a Player and target round as parameter. 
   - Game starts with the function call start()
 
-Mechanics:
-Round
+Mechanics: 
+Round 
 The player starts on round 1 and each round is represented by the roll of an imaginary dice
   - Next round is triggered by completion of random event
 
-Events
+Events 
 RNG has ⅓ chance of rolling a fight encounter, a shop encounter, or an event encounter
   - Fight encounter - Player fights an enemy
     - Monster HP, Atk, and Gold calculated based on round number
@@ -33,7 +33,7 @@ RNG has ⅓ chance of rolling a fight encounter, a shop encounter, or an event e
       - Player Atk cannot be reduced to < 1
     - Choosing “no” ends the round
 
-End game conditions:
+End game conditions: 
 The game is over when
   1) The Player has <= 0 HP. OR
   2) When the player reaches the target round.
