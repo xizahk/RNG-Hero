@@ -5,8 +5,9 @@
 
 #ifndef GAME_H
 #define GAME_H
-#include "Player.h"
 #include <cstdlib>
+#include "Player.h"
+
 enum Events
 {
     FIGHT = 0, SHOP = 1, EVENT = 2

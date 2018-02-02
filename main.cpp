@@ -2,9 +2,9 @@
 // This file is responsible for creating and running Games.
 
 #include <iostream>
-#include <Game.h>
-#include <Player.h>
 #include <string>
+#include "Game.h"
+#include "Player.h"
 
 using namespace std;
 

@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <iostream>
 #include "Enemy.h"
+#include "math.h"
 
 using namespace std;
 
@@ -93,7 +94,7 @@ void Game::processShop()
     int numHP, numATK, maxHP, maxATK, money;
     money = this->player.getGold();
     maxHP = floor(money/10);
-    
+
     cout << "Welcome to the shop! Here are the upgrades offered:\nHP +1 -- 10 gold\nATK +1 -- 10 gold" << endl;
     cout << "How many HP +1's would you like to purchase? Currently, you can buy up to " << maxHP << endl;
     cin >> numHP;
@@ -101,21 +102,21 @@ void Game::processShop()
         cout << "Insufficient gold! How many HP +1's would you like to purchase? Currently, you can buy up to " << maxHP << endl;
         cin >> numHP;
     }
-    
+
     this->player.changeStat(numHP,HP);
     this->player.changeStat(10 * numHP,GOLD);
-    
+
     money = this->player.getGold();
     maxATK = floor(money/10);
-    
+
     cout << "How many ATK +1's would you like to purchase? Currently, you can buy up to " << maxATK << endl;
     cin >> numATK;
-    
+
     while (numATK > maxATK) {
         cout << "Insufficient gold! How many ATK +1's would you like to purchase? Currently, you can buy up to " << maxATK << endl;
         cin >> numATK;
     }
-    
+
     this->player.changeStat(numATK,HP);
     this->player.changeStat(10 * numATK,GOLD);
 }
