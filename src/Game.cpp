@@ -7,9 +7,6 @@
 #include <math.h>
 #include <stdlib.h>
 #include <time.h>
-#include <sstream>
-#include <string>
-#include <algorithm>
 using namespace std;
 // Starts the game and creates a game loop. The loop continues until either
 //    1) The player reaches his or her target round. OR
