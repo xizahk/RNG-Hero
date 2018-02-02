@@ -1,6 +1,6 @@
 // "Game.cpp"
 
-#include "Game.hpp"
+#include "Game.h"
 #include <cstdlib>
 #include <iostream>
 #include <random>
